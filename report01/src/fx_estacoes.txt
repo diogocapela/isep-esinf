@@ -1,0 +1,10 @@
+9,Brito Capelo,C4
+4,Árvore,C2
+8,Botica,C4
+2,Alto de Pêga,C1
+7,Bolhão,C3
+6,Baguim,C3
+10,Câmara Gaia,C4
+5,Azurara,C2
+3,Araújo,C1
+1,Aliados,C1

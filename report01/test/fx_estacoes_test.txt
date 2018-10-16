@@ -1,0 +1,3 @@
+3,Estação C,C3
+1,Estação A,C1
+2,Estação B,C2
