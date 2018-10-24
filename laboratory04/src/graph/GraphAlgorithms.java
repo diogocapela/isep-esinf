@@ -135,7 +135,17 @@ public class GraphAlgorithms {
      *
      */
     public static <V, E> boolean allPaths(AdjacencyMatrixGraph<V, E> graph, V source, V dest, LinkedList<LinkedList<V>> paths) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (!graph.checkVertex(source) || !graph.checkVertex(dest)) {
+            return false;
+        }
+        paths.clear();
+        LinkedList<V> auxStack = new LinkedList<>();
+        boolean[] knownVertices = new boolean[graph.numVertices];
+        for (int i = 0; i < graph.numVertices; i++) {
+            knownVertices[i] = false;
+        }
+        allPaths(graph, graph.toIndex(source), graph.toIndex(dest), knownVertices, auxStack, paths);
+        return true;
     }
 
     /**
@@ -152,7 +162,23 @@ public class GraphAlgorithms {
      *
      */
     static <V, E> void allPaths(AdjacencyMatrixGraph<V, E> graph, int sourceIdx, int destIdx, boolean[] knownVertices, LinkedList<V> auxStack, LinkedList<LinkedList<V>> paths) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        V initialVertex = graph.vertices.get(sourceIdx);
+        V finalVertex = graph.vertices.get(destIdx);
+        knownVertices[sourceIdx] = true;
+        auxStack.push(initialVertex);
+        for (V vertice : graph.directConnections(initialVertex)) {
+            if (vertice.equals(finalVertex)) {
+                auxStack.push(finalVertex);
+                paths.add(reverse(auxStack));
+                auxStack.pop();
+            } else {
+                if (knownVertices[graph.toIndex(vertice)] == false) {
+                    allPaths(graph, graph.toIndex(vertice), destIdx, knownVertices, auxStack, paths);
+                }
+            }
+        }
+        knownVertices[sourceIdx] = false;
+        auxStack.pop();
     }
 
     /**
@@ -165,7 +191,7 @@ public class GraphAlgorithms {
      */
     public static <V, E> AdjacencyMatrixGraph<V, E> transitiveClosure(AdjacencyMatrixGraph<V, E> graph, E dummyEdge) {
         AdjacencyMatrixGraph<V, E> clone = (AdjacencyMatrixGraph<V, E>) graph.clone();
-        
+
         for (int k = 0; k < clone.numVertices; k++) {
             for (int i = 0; i < clone.numVertices; i++) {
                 if (i != k && clone.edgeMatrix[i][k] != null) {
