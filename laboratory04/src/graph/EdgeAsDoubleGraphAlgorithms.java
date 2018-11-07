@@ -16,7 +16,36 @@ public class EdgeAsDoubleGraphAlgorithms {
      *
      */
     private static <V> void shortestPath(AdjacencyMatrixGraph<V, Double> graph, int sourceIdx, boolean[] knownVertices, int[] verticesIndex, double[] minDist) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        for(V vertex : graph.vertices) {
+            int index = graph.toIndex(vertex);
+            minDist[index] = Double.POSITIVE_INFINITY;
+            verticesIndex[index] = -1;
+            knownVertices[index] = false;
+        }
+        
+        minDist[sourceIdx] = 0;
+        V sourceVertex = graph.vertices.get(sourceIdx);
+        
+        while(sourceIdx != -1) {
+            knownVertices[sourceIdx] = true;
+            for(V adjacentVertex : graph.directConnections(sourceVertex)) {
+                double edge = graph.getEdge(sourceVertex, adjacentVertex);
+                
+                int adjacentIndex = graph.toIndex(adjacentVertex);
+                
+                if (!knownVertices[adjacentIndex]) {
+                 
+                    
+                    
+                                        // TODO: Acabar
+                    
+                    
+                }
+                    
+            }
+        }
+        
     }
 
     /**
@@ -36,7 +65,7 @@ public class EdgeAsDoubleGraphAlgorithms {
 
     /**
      * Recreates the minimum path between two vertex, from the result of
-     * Dikstra's algorithm
+     * Dijkstra's algorithm
      *
      * @param graph Graph object
      * @param sourceIdx Source vertex

@@ -14,12 +14,12 @@ public class AirportNet {
     }
 
     public void addAirport(String a) {
-
+        airport.insertVertex(a);
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void addRoute(String a1, String a2, double miles, Integer npasseng) {
-
+        airport.insertEdge(a1, a2, npasseng, miles);
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

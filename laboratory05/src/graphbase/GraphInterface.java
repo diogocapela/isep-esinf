@@ -8,32 +8,32 @@ public interface GraphInterface<V, E> {
     // Returns all the vertices of the graph as an iterable collection  
     Iterable<V> vertices();
 
-    // Returns the number of edges of the graph  
+    // Returns the number of edges of the graph
     int numEdges();
 
     // Returns the information of all the edges of the graph as an iterable collection
     Iterable<Edge<V, E>> edges();
 
     /* Returns the edge from vorig to vdest, or null if vertices are not adjacent
-   * @param vorig
-   * @param vdest
-   * @return the edge or null if vertices are not adjacent or don't exist 
+     * @param vorig
+     * @param vdest
+     * @return the edge or null if vertices are not adjacent or don't exist
      */
     Edge<V, E> getEdge(V vOrig, V vDest);
 
     /* Returns the vertices of edge e as an array of length two 
-   * If the graph is directed, the first vertex is the origin, and
-   * the second is the destination.  If the graph is undirected, the
-   * order is arbitrary.
-   * @param e
-   * @return array of two vertices or null if edge doesn't exist 
+     * If the graph is directed, the first vertex is the origin, and
+     * the second is the destination.  If the graph is undirected, the
+     * order is arbitrary.
+     * @param e
+     * @return array of two vertices or null if edge doesn't exist 
      */
     V[] endVertices(Edge<V, E> edge);
 
     /* Returns the vertex that is opposite vertex v on edge e. 
-   * @param v
-   * @param e
-   * @return opposite vertex, or null if vertex or edge don't exist
+     * @param v
+     * @param e
+     * @return opposite vertex, or null if vertex or edge don't exist
      */
     V opposite(V vert, Edge<V, E> edge);
 

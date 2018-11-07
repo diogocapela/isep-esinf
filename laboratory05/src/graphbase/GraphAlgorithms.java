@@ -17,7 +17,6 @@ public class GraphAlgorithms {
      * @return qbfs a queue with the vertices of breadth-first search
      */
     public static <V, E> LinkedList<V> BreadthFirstSearch(Graph<V, E> g, V vert) {
-
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
