@@ -36,7 +36,22 @@ public class TREE_WORDS extends BST<TextWord> {
     }
     
     private Node<TextWord> insert(TextWord element, Node<TextWord> node){
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (node == null) {
+            return new Node(element, null, null);
+        }
+        
+        if (node.getElement().compareTo(element) < 0) {
+            node.setRight(insert(element, node.getRight()));
+            return node;
+        }
+
+        if (node.getElement().compareTo(element) > 0) {
+            node.setLeft(insert(element, node.getLeft()));
+            return node;
+        }
+
+        node.getElement().incOcorrences();
+        return node;
 
     }
 
@@ -45,8 +60,15 @@ public class TREE_WORDS extends BST<TextWord> {
      * @return a map with a list of words for each occurrence found.
      */
     public Map<Integer,List<String>> getWordsOccurrences(){
-        throw new UnsupportedOperationException("Not supported yet.");
-
+        Map<Integer,List<String>> map = new HashMap<>();
+        for(TextWord tx : inOrder()) {
+            int numberOfOcorrences = tx.getOcorrences();
+            if(!map.containsKey(numberOfOcorrences)) {
+                map.put(numberOfOcorrences, new ArrayList<String>());
+            }
+            map.get(numberOfOcorrences).add(tx.getWord());
+        }
+        return map;
     }
 
 }
